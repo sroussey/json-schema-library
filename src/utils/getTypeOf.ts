@@ -1,3 +1,5 @@
+import { isTypedArray } from "./isTypedArray";
+
 const toString = Object.prototype.toString;
 
 export type JSType =
@@ -15,7 +17,7 @@ export type JSType =
 export function getTypeOf(value: unknown): JSType {
     // Treat TypedArrays as black boxes - they should be treated as arrays
     // without inspecting their contents during validation
-    if (ArrayBuffer.isView(value) && !(value instanceof DataView)) {
+    if (isTypedArray(value)) {
         return "array";
     }
     
