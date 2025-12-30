@@ -107,7 +107,7 @@ export default function runAllTestCases(setup: Setup) {
             })
             .forEach((tc) => runTestCase(setup, tc, remotes));
 
-        after(() => {
+        afterEach(() => {
             measurements.end = Date.now();
             if (process.env.DISABLE_LOG !== "true") {
                 console.log(

@@ -1,5 +1,5 @@
 # Base image with Node.js
-FROM mcr.microsoft.com/devcontainers/typescript-node:24
+FROM mcr.microsoft.com/devcontainers/typescript-node:22
 
 # Install zsh and optional tools
 RUN apt-get update && \

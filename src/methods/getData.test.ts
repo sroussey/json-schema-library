@@ -195,6 +195,32 @@ describe("getData", () => {
             });
         });
 
+        describe("typed array", () => {
+            it("should not modify typed array", () => {
+                const data = compileSchema({
+                    type: "array",
+                    items: { type: "number" }
+                }).getData(new Uint8Array([1, 2, 3]));
+                assert.deepEqual(data, new Uint8Array([1, 2, 3]));
+            });
+
+            it("should not modify typed array on object", () => {
+                const data = compileSchema({
+                    type: "object",
+                    properties: { array: { type: "array", items: { type: "number" } } }
+                }).getData({ array: new Uint8Array([1, 2, 3]) });
+                console.log(data     );
+                assert.deepEqual(data, { array: new Uint8Array([1, 2, 3]) });
+            });
+            it("should not modify typed array on object", () => {
+                const data = compileSchema({
+                    type: "object",
+                    properties: { array: { type: "array", items: { type: "array", items: { type: "number" }  } } }
+                }).getData({ array: [new Float32Array([0.5, -0.5, 0.8]), new Float32Array([0.1, 0.2, 0.3]), new Float32Array([-0.4, -0.5, -0.6])] });
+                assert.deepEqual(data, { array: [new Float32Array([0.5, -0.5, 0.8]), new Float32Array([0.1, 0.2, 0.3]), new Float32Array([-0.4, -0.5, -0.6])] });
+            });
+        });
+
         describe("oneOf", () => {
             it("should return first schema for mixed types", () => {
                 const node = compileSchema({

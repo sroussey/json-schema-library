@@ -1,5 +1,6 @@
 import { Keyword, JsonSchemaResolverParams, JsonSchemaValidatorParams, ValidationReturnType } from "../Keyword";
-import { isBooleanSchema, isJsonSchema, SchemaNode } from "../types";
+import { isBooleanSchema, isJsonSchema, type SchemaNode } from "../types";
+import { isTypedArray } from "../utils/isTypedArray";
 import { validateNode } from "../validateNode";
 
 const KEYWORD = "items";
@@ -50,6 +51,12 @@ export function parseItems(node: SchemaNode) {
 
 function validateItems({ node, data, pointer = "#", path }: JsonSchemaValidatorParams) {
     const { schema } = node;
+
+    // Treat TypedArrays as black boxes - skip item validation
+    if (isTypedArray(data)) {
+        return;
+    }
+    
     if (!Array.isArray(data) || data.length === 0) {
         return;
     }

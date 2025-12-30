@@ -1,5 +1,5 @@
 {
-  "name": "json-schema-library",
+  "name": "@sroussey/json-schema-library",
   "version": "11.4.0",
   "description": "Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation",
   "types": "./dist/index.d.cts",
@@ -46,7 +46,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sagold/json-schema-library.git"
+    "url": "git+https://github.com/sroussey/json-schema-library.git"
   },
   "keywords": [
     "JSON",
