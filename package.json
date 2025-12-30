@@ -1,6 +1,6 @@
 {
   "name": "@sroussey/json-schema-library",
-  "version": "10.5.2",
+  "version": "10.5.3",
   "description": "Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -19,7 +19,7 @@
     "lint": "eslint src",
     "prepublishOnly": "yarn dist",
     "tdd": "watch \"npm run test:unit\" src/ tests/",
-    "test": "mocha 'src/**/*.{test,spec}.ts'",
+    "test": "bun test",
     "test:2019": "mocha 'src/tests/spec/draft2019-09.spec.ts'",
     "test:2019:ci": "DISABLE_LOG=true mocha -R json 'src/tests/spec/draft2019-09.spec.ts' > test-result-spec2019-09.json; exit 0",
     "test:2020": "mocha 'src/tests/spec/draft2020-12.spec.ts'",
