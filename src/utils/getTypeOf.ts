@@ -13,6 +13,12 @@ export type JSType =
     | "undefined";
 
 export function getTypeOf(value: unknown): JSType {
+    // Treat TypedArrays as black boxes - they should be treated as arrays
+    // without inspecting their contents during validation
+    if (ArrayBuffer.isView(value) && !(value instanceof DataView)) {
+        return "array";
+    }
+    
     const type = toString.call(value).slice(8, -1).toLowerCase();
     if (type === "file") {
         return "object";
