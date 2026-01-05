@@ -1,5 +1,5 @@
 {
-    "name": "Workglow-libs",
+    "name": "json-schema-library",
     "build": { "dockerfile": "./Dockerfile" },
   
     // Configure tool-specific properties
@@ -18,10 +18,7 @@
         ]
       }
     },
-  
-    // web example uses port 3800
-    "forwardPorts": [3800],
-  
+   
     "remoteUser": "node",
   
     "postCreateCommand": "bun --version && node --version && npm --version",
@@ -30,8 +27,7 @@
     "features": {
       "ghcr.io/devcontainers/features/git:1": {
         "lfs": true
-      },
-      "ghcr.io/devcontainers/features/python:1": { "version": "3.12" }
+      }
     }
   }
   
