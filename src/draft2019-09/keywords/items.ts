@@ -1,6 +1,7 @@
 import { Keyword, JsonSchemaResolverParams, JsonSchemaValidatorParams, ValidationReturnType } from "../../Keyword";
 import { SchemaNode } from "../../types";
 import { isObject } from "../../utils/isObject";
+import { isTypedArray } from "../../utils/isTypedArray";
 import { validateNode } from "../../validateNode";
 
 export const itemsKeyword: Keyword = {
@@ -40,6 +41,12 @@ export function parseItems(node: SchemaNode) {
 
 function validateItems({ node, data, pointer = "#", path }: JsonSchemaValidatorParams) {
     const { schema } = node;
+
+    // Treat TypedArrays as black boxes - skip item validation
+    if (isTypedArray(data)) {
+        return;
+    }
+
     if (!Array.isArray(data) || data.length === 0) {
         return;
     }
